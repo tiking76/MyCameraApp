@@ -16,7 +16,7 @@ class CameraViewController: UIViewController {
     //カメラの制御
     fileprivate var maincamera : GPUImageStillCamera?
     
-    fileprivate var preView : GPUImageView?
+    fileprivate var previewView : GPUImageView?
     
     let mainScreensize : CGSize = UIScreen.main.bounds.size
     
@@ -30,5 +30,10 @@ class CameraViewController: UIViewController {
     func CameraInit() {
         maincamera = GPUImageStillCamera(sessionPreset: AVCaptureSession.Preset.photo.rawValue, cameraPosition: .back)
         maincamera!.outputImageOrientation = .portrait
+        previewView = GPUImageView(frame: CGRect(x: 0, y: 0, width: mainScreensize.width, height: ( mainScreensize.width / 3) * 4))
+        maincamera?.addTarget(previewView)
+        view.addSubview(previewView!)
+        
+        maincamera?.startCapture()
     }
 }
