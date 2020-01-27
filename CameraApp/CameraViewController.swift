@@ -44,7 +44,13 @@ class CameraViewController: UIViewController {
     }()
     
     @objc func onShutterButtonClicked(sender : AnyObject){
-        
+        capturePhotoProcess()
+    }
+    
+    func capturePhotoProcess() {
+        let cropFilter = GPUImageCropFilter(cropRegion: CGRect(x: 0, y: 0, width: 1, height: 1))
+        maincamera?.addTarget(cropFilter)
+        maincamera?.capturePhotoAsImageProcessedUp(toFilter: cropFilter, withCompletionHandler: { (image, error) in UIImageWriteToSavedPhotosAlbum(image!, self, nil, nil)})
     }
     
     func CameraInit() {
