@@ -40,6 +40,7 @@ class CameraViewController: UIViewController {
         button.setBackgroundImage(image, for: .normal)
         button.center = CGPoint(x : ((mainScreensize.width) / 2), y : (previewView?.frame.maxY)! + (mainScreensize.height - (previewView?.frame.maxY)! ) / 2)
         button.addTarget(self, action: #selector(onShutterButtonClicked(sender:)), for: .touchUpInside)
+        print("hoge")
         return button
     }()
     
